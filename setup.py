@@ -19,15 +19,11 @@ try:
 except Exception:
     from distutils import setup, Extension
 
-import pathlib
-
-PARENT = pathlib.Path(__file__).parent
-
-README = (PARENT / "README.md").read_text()
+README = open("./README.md").read()
 
 metadata = dict(
     name='fastDamerauLevenshtein',
-    version='1.0.0',
+    version='1.0.1',
     description='Cython implementation of true Damerau-Levenshtein algorithm.',
     long_description=README,
     long_description_content_type="text/markdown",
