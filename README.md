@@ -1,6 +1,7 @@
 # fastDamerauLevenshtein
 
 [![Build Status](https://travis-ci.com/robertgr991/fastDamerauLevenshtein.svg?branch=master)](https://travis-ci.com/robertgr991/fastDamerauLevenshtein)
+[![Wheel Status](https://pypip.in/wheel/fastDamerauLevenshtein/badge.svg)](https://pypi.python.org/pypi/fastDamerauLevenshtein/)
 
 Cython implementation of true Damerau-Levenshtein edit distance which allows one item to be edited more than once.
 More information from [Wikipedia](http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance):
