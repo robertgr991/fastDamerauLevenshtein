@@ -9,7 +9,7 @@ More information from [Wikipedia](http://en.wikipedia.org/wiki/Damerau%E2%80%93L
 > In information theory and computer science, the Damerau-Levenshtein distance (named after Frederick J. Damerau and Vladimir I. Levenshtein) is a string metric for measuring the edit distance between two sequences. Informally, the Damerau-Levenshtein distance between two words is the minimum number of operations (consisting of insertions, deletions or substitutions of a single character, or transposition of two adjacent characters) required to change one word into the other.<br/>
 The Damerau-Levenshtein distance differs from the classical Levenshtein distance by including transpositions among its allowable operations in addition to the three classical single-character edit operations (insertions, deletions and substitutions).
 
-The implementation is based on [James M. Jensen II](https://www.lemoda.net/text-fuzzy/damerau-levenshtein/index.html) explanation.
+The implementation is based on [James M. Jensen II](https://www.lemoda.net/text-fuzzy/damerau-levenshtein/index.html) explanation and it allows specifing the cost of every operation.
 
 ## Requirements
 This code requires Python 2.7 or 3.4+ and a C compiler such as GCC.
@@ -40,7 +40,7 @@ The available method it's called `damerauLevenshtein` and can compute the distan
     * If this parameter value is `False`, it will return the total cost of edit, otherwise it will return a score from 0.0 to 1.0 denoting how similar the two objects are. It is `True` by default.
     
 * **deleteWeight**
-    * Cost of delete operation
+    * Cost of delete operation.
 
 * **insertWeight**
     * Cost of insert operation.
