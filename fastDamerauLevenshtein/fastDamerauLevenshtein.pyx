@@ -1,6 +1,5 @@
 from cython cimport cdivision, boundscheck
 from libc.stdlib cimport malloc, free, realloc
-from libc.string cimport strcpy, strcmp
 from libc.limits cimport LONG_MAX
 from libc.stdint cimport int64_t
 
@@ -38,8 +37,8 @@ cpdef double damerauLevenshtein(firstObject, secondObject, bint similarity=True,
      else:
        return 0.0
 
-    cdef long len1 = len(firstObject)
-    cdef long len2 = len(secondObject)
+    cdef size_t len1 = len(firstObject)
+    cdef size_t len2 = len(secondObject)
 
     if len1 == 0 and similarity == True:
       return 0.0
@@ -51,7 +50,7 @@ cpdef double damerauLevenshtein(firstObject, secondObject, bint similarity=True,
     elif len2 == 0 and similarity == False:
       return len1
 
-    cdef long i, j
+    cdef size_t i, j
     cdef int64_t* object1 = <int64_t*> malloc(len1 * sizeof(int64_t))
     cdef int64_t* object2 = <int64_t*> malloc(len2 * sizeof(int64_t))
 
@@ -70,9 +69,9 @@ cpdef double damerauLevenshtein(firstObject, secondObject, bint similarity=True,
     for j from 0 <= j < len2 by 1:
       object2[j] = hash(secondObject[j])
 
-    cdef long maxLen = len1 if len1 >= len2 else len2
+    cdef size_t maxLen = len1 if len1 >= len2 else len2
     cdef long** table
-    cdef unsigned int k
+    cdef size_t k
 
     table = <long**> malloc(len1 * sizeof(long*))
 
@@ -86,6 +85,9 @@ cpdef double damerauLevenshtein(firstObject, secondObject, bint similarity=True,
       if not table[i]:
         free(object1)
         free(object2)
+        for j from 0 <= j < i by 1:
+          free(table[j])
+        free(table)
         raise MemoryError()
 
     for i from 0 <= i < len1 by 1:
@@ -107,7 +109,7 @@ cpdef double damerauLevenshtein(firstObject, secondObject, bint similarity=True,
 
     lastSeenCharacter[0].key = object1[0]
     lastSeenCharacter[0].value = 0
-    cdef unsigned int countMap = 1
+    cdef size_t countMap = 1
 
     cdef bint sw
     cdef long deleteDistance, insertDistance, matchDistance
