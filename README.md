@@ -38,16 +38,16 @@ The available method it's called `damerauLevenshtein` and can compute the distan
 
 * **similarity**
     * If this parameter value is `False`, it will return the total cost of edit, otherwise it will return a score from 0.0 to 1.0 denoting how similar the two objects are. It is `True` by default.
-    
+
 * **deleteWeight**
     * Cost of delete operation.
 
 * **insertWeight**
     * Cost of insert operation.
-    
+
 * **replaceWeight**
     * Cost of replace operation.
-    
+
 * **swapWeight**
     * Cost of swap operation.
 
@@ -66,25 +66,29 @@ damerauLevenshtein(['ab', 'bc'], ['ab'], similarity=True)  # expected result: 0.
 ## Benchmark
 Other Python Damerau-Levenshtein and OSA implementations:
 
-* [pyxDamerauLevenshtein](https://github.com/gfairchild/pyxDamerauLevenshtein) (restricted edit distance)
-* [jellyfish](https://github.com/sunlightlabs/jellyfish) (true Damerau-Levenshtein)
-* [editdistance](https://github.com/aflc/editdistance) (restricted edit distance)
+* [pyxDamerauLevenshtein](https://github.com/gfairchild/pyxDamerauLevenshtein) (restricted edit distance and no custom weights)
+* [jellyfish](https://github.com/sunlightlabs/jellyfish) (true Damerau-Levenshtein but no custom weights)
+* [editdistance](https://github.com/aflc/editdistance) (restricted edit distance and no custom weights)
+* [textdistance](https://github.com/orsinium/textdistance) (true Damerau-Levenshtein but no custom weights)
 
 Python 3.7 (on Intel i5 6500):
-    
+
     >>> import timeit
     >>> #fastDamerauLevenshtein:
     ... timeit.timeit(setup="import fastDamerauLevenshtein; text1='afwafghfdowbihgp'; text2='goagumkphfwifawpte'", stmt="fastDamerauLevenshtein.damerauLevenshtein(text1, text2)", number=100000)
-    0.55
+    0.43
     >>> #pyxDamerauLevenshtein:
     ... timeit.timeit(setup="from pyxdameraulevenshtein import normalized_damerau_levenshtein_distance; text1='afwafghfdowbihgp'; text2='goagumkphfwifawpte'", stmt="normalized_damerau_levenshtein_distance(text1, text2)", number=100000)
     2.44
     >>> #jellyfish
     ... timeit.timeit(setup="import jellyfish; text1='afwafghfdowbihgp'; text2='goagumkphfwifawpte'", stmt="jellyfish.damerau_levenshtein_distance(text1, text2)", number=100000)
-    23.7
-    >>> #edidistance
+    0.20
+    >>> #editdistance
     ... timeit.timeit(setup="import editdistance; text1='afwafghfdowbihgp'; text2='goagumkphfwifawpte'", stmt="editdistance.eval(text1, text2)", number=100000)
-    0.32
+    0.22
+    >>> #textdistance
+    ... timeit.timeit(setup="import textdistance; text1='afwafghfdowbihgp'; text2='goagumkphfwifawpte'", stmt="textdistance.damerau_levenshtein.distance(text1, text2)", number=100000)
+    0.70
 
 -------
 License
