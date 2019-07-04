@@ -1,6 +1,9 @@
 # Changes
 
-## 1.0.1 (03-07-2019)
+## 1.0.3 (03-08-2019)
+* Changed type of variables used for iteration to 'size_t'.
+
+## 1.0.2 (03-07-2019)
 * Changes in 'README.md'.
 
 ## 1.0.1 (03-07-2019)
