@@ -69,7 +69,7 @@ cpdef double damerauLevenshtein(firstObject, secondObject, bint similarity=True,
     for j from 0 <= j < len2 by 1:
       object2[j] = hash(secondObject[j])
 
-    cdef size_t maxLen = len1 if len1 >= len2 else len2
+    cdef size_t maxLen = (len1 if len1 >= len2 else len2) * insertWeight
     cdef long** table
     cdef size_t k
 

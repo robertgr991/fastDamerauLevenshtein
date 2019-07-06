@@ -1637,7 +1637,7 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *     for j from 0 <= j < len2 by 1:
  *       object2[j] = hash(secondObject[j])             # <<<<<<<<<<<<<<
  * 
- *     cdef size_t maxLen = len1 if len1 >= len2 else len2
+ *     cdef size_t maxLen = (len1 if len1 >= len2 else len2) * insertWeight
  */
     __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_secondObject, __pyx_v_j, size_t, 0, __Pyx_PyInt_FromSize_t, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
@@ -1649,7 +1649,7 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
   /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":72
  *       object2[j] = hash(secondObject[j])
  * 
- *     cdef size_t maxLen = len1 if len1 >= len2 else len2             # <<<<<<<<<<<<<<
+ *     cdef size_t maxLen = (len1 if len1 >= len2 else len2) * insertWeight             # <<<<<<<<<<<<<<
  *     cdef long** table
  *     cdef size_t k
  */
@@ -1658,7 +1658,7 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
   } else {
     __pyx_t_5 = __pyx_v_len2;
   }
-  __pyx_v_maxLen = __pyx_t_5;
+  __pyx_v_maxLen = (__pyx_t_5 * __pyx_v_insertWeight);
 
   /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":76
  *     cdef size_t k
