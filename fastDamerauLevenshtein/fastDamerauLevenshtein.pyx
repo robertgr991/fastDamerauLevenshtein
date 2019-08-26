@@ -43,12 +43,12 @@ cpdef double damerauLevenshtein(firstObject, secondObject, bint similarity=True,
     if len1 == 0 and similarity == True:
       return 0.0
     elif len1 == 0 and similarity == False:
-      return len2
+      return len2 * min(insertWeight, deleteWeight)
 
     if len2 == 0 and similarity == True:
       return 0.0
     elif len2 == 0 and similarity == False:
-      return len1
+      return len1 * min(insertWeight, deleteWeight)
 
     cdef size_t i, j
     cdef int64_t* object1 = <int64_t*> malloc(len1 * sizeof(int64_t))
@@ -69,7 +69,7 @@ cpdef double damerauLevenshtein(firstObject, secondObject, bint similarity=True,
     for j from 0 <= j < len2 by 1:
       object2[j] = hash(secondObject[j])
 
-    cdef size_t maxLen = (len1 if len1 >= len2 else len2) * insertWeight
+    cdef size_t maxLen = (len1 if len1 >= len2 else len2) * max(insertWeight, deleteWeight, replaceWeight, swapWeight)
     cdef long** table
     cdef size_t k
 
@@ -181,7 +181,12 @@ cpdef double damerauLevenshtein(firstObject, secondObject, bint similarity=True,
       similarityScore = (<double>(maxLen - distance) / maxLen)
 
       if similarity == True:
-        return similarityScore
+        if similarityScore < 0:
+          return 0
+        elif similarityScore > 1:
+          return 1
+        else:
+          return similarityScore
       else:
         return distance
     finally:

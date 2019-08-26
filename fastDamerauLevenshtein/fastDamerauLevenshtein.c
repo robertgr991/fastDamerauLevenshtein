@@ -1202,25 +1202,28 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
   int __pyx_t_2;
   Py_ssize_t __pyx_t_3;
   int __pyx_t_4;
-  size_t __pyx_t_5;
-  Py_hash_t __pyx_t_6;
-  size_t __pyx_t_7;
-  long __pyx_t_8;
-  long __pyx_t_9;
-  long __pyx_t_10;
-  long __pyx_t_11;
+  int __pyx_t_5;
+  int __pyx_t_6;
+  int __pyx_t_7;
+  size_t __pyx_t_8;
+  Py_hash_t __pyx_t_9;
+  int __pyx_t_10;
+  int __pyx_t_11;
   size_t __pyx_t_12;
   long __pyx_t_13;
-  int __pyx_t_14;
-  int __pyx_t_15;
-  char const *__pyx_t_16;
-  PyObject *__pyx_t_17 = NULL;
-  PyObject *__pyx_t_18 = NULL;
-  PyObject *__pyx_t_19 = NULL;
+  long __pyx_t_14;
+  long __pyx_t_15;
+  long __pyx_t_16;
+  size_t __pyx_t_17;
+  long __pyx_t_18;
+  char const *__pyx_t_19;
   PyObject *__pyx_t_20 = NULL;
   PyObject *__pyx_t_21 = NULL;
   PyObject *__pyx_t_22 = NULL;
-  double __pyx_t_23;
+  PyObject *__pyx_t_23 = NULL;
+  PyObject *__pyx_t_24 = NULL;
+  PyObject *__pyx_t_25 = NULL;
+  double __pyx_t_26;
   __Pyx_RefNannySetupContext("damerauLevenshtein", 0);
   if (__pyx_optional_args) {
     if (__pyx_optional_args->__pyx_n > 0) {
@@ -1345,7 +1348,7 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *     if len1 == 0 and similarity == True:
  *       return 0.0             # <<<<<<<<<<<<<<
  *     elif len1 == 0 and similarity == False:
- *       return len2
+ *       return len2 * min(insertWeight, deleteWeight)
  */
     __pyx_r = 0.0;
     goto __pyx_L0;
@@ -1363,7 +1366,7 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *     if len1 == 0 and similarity == True:
  *       return 0.0
  *     elif len1 == 0 and similarity == False:             # <<<<<<<<<<<<<<
- *       return len2
+ *       return len2 * min(insertWeight, deleteWeight)
  * 
  */
   __pyx_t_4 = ((__pyx_v_len1 == 0) != 0);
@@ -1380,24 +1383,31 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
     /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":46
  *       return 0.0
  *     elif len1 == 0 and similarity == False:
- *       return len2             # <<<<<<<<<<<<<<
+ *       return len2 * min(insertWeight, deleteWeight)             # <<<<<<<<<<<<<<
  * 
  *     if len2 == 0 and similarity == True:
  */
-    __pyx_r = __pyx_v_len2;
+    __pyx_t_5 = __pyx_v_deleteWeight;
+    __pyx_t_6 = __pyx_v_insertWeight;
+    if (((__pyx_t_5 < __pyx_t_6) != 0)) {
+      __pyx_t_7 = __pyx_t_5;
+    } else {
+      __pyx_t_7 = __pyx_t_6;
+    }
+    __pyx_r = (__pyx_v_len2 * __pyx_t_7);
     goto __pyx_L0;
 
     /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":45
  *     if len1 == 0 and similarity == True:
  *       return 0.0
  *     elif len1 == 0 and similarity == False:             # <<<<<<<<<<<<<<
- *       return len2
+ *       return len2 * min(insertWeight, deleteWeight)
  * 
  */
   }
 
   /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":48
- *       return len2
+ *       return len2 * min(insertWeight, deleteWeight)
  * 
  *     if len2 == 0 and similarity == True:             # <<<<<<<<<<<<<<
  *       return 0.0
@@ -1419,13 +1429,13 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *     if len2 == 0 and similarity == True:
  *       return 0.0             # <<<<<<<<<<<<<<
  *     elif len2 == 0 and similarity == False:
- *       return len1
+ *       return len1 * min(insertWeight, deleteWeight)
  */
     __pyx_r = 0.0;
     goto __pyx_L0;
 
     /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":48
- *       return len2
+ *       return len2 * min(insertWeight, deleteWeight)
  * 
  *     if len2 == 0 and similarity == True:             # <<<<<<<<<<<<<<
  *       return 0.0
@@ -1437,7 +1447,7 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *     if len2 == 0 and similarity == True:
  *       return 0.0
  *     elif len2 == 0 and similarity == False:             # <<<<<<<<<<<<<<
- *       return len1
+ *       return len1 * min(insertWeight, deleteWeight)
  * 
  */
   __pyx_t_4 = ((__pyx_v_len2 == 0) != 0);
@@ -1454,18 +1464,25 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
     /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":51
  *       return 0.0
  *     elif len2 == 0 and similarity == False:
- *       return len1             # <<<<<<<<<<<<<<
+ *       return len1 * min(insertWeight, deleteWeight)             # <<<<<<<<<<<<<<
  * 
  *     cdef size_t i, j
  */
-    __pyx_r = __pyx_v_len1;
+    __pyx_t_7 = __pyx_v_deleteWeight;
+    __pyx_t_5 = __pyx_v_insertWeight;
+    if (((__pyx_t_7 < __pyx_t_5) != 0)) {
+      __pyx_t_6 = __pyx_t_7;
+    } else {
+      __pyx_t_6 = __pyx_t_5;
+    }
+    __pyx_r = (__pyx_v_len1 * __pyx_t_6);
     goto __pyx_L0;
 
     /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":50
  *     if len2 == 0 and similarity == True:
  *       return 0.0
  *     elif len2 == 0 and similarity == False:             # <<<<<<<<<<<<<<
- *       return len1
+ *       return len1 * min(insertWeight, deleteWeight)
  * 
  */
   }
@@ -1605,8 +1622,8 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *       object1[i] = hash(firstObject[i])
  * 
  */
-  __pyx_t_5 = __pyx_v_len1;
-  for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_5; __pyx_v_i+=1) {
+  __pyx_t_8 = __pyx_v_len1;
+  for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_8; __pyx_v_i+=1) {
 
     /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":67
  * 
@@ -1617,9 +1634,9 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  */
     __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_firstObject, __pyx_v_i, size_t, 0, __Pyx_PyInt_FromSize_t, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = PyObject_Hash(__pyx_t_1); if (unlikely(__pyx_t_6 == ((Py_hash_t)-1))) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_9 = PyObject_Hash(__pyx_t_1); if (unlikely(__pyx_t_9 == ((Py_hash_t)-1))) __PYX_ERR(0, 67, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    (__pyx_v_object1[__pyx_v_i]) = __pyx_t_6;
+    (__pyx_v_object1[__pyx_v_i]) = __pyx_t_9;
   }
 
   /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":69
@@ -1629,36 +1646,57 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *       object2[j] = hash(secondObject[j])
  * 
  */
-  __pyx_t_5 = __pyx_v_len2;
-  for (__pyx_v_j = 0; __pyx_v_j < __pyx_t_5; __pyx_v_j+=1) {
+  __pyx_t_8 = __pyx_v_len2;
+  for (__pyx_v_j = 0; __pyx_v_j < __pyx_t_8; __pyx_v_j+=1) {
 
     /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":70
  * 
  *     for j from 0 <= j < len2 by 1:
  *       object2[j] = hash(secondObject[j])             # <<<<<<<<<<<<<<
  * 
- *     cdef size_t maxLen = (len1 if len1 >= len2 else len2) * insertWeight
+ *     cdef size_t maxLen = (len1 if len1 >= len2 else len2) * max(insertWeight, deleteWeight, replaceWeight, swapWeight)
  */
     __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_secondObject, __pyx_v_j, size_t, 0, __Pyx_PyInt_FromSize_t, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = PyObject_Hash(__pyx_t_1); if (unlikely(__pyx_t_6 == ((Py_hash_t)-1))) __PYX_ERR(0, 70, __pyx_L1_error)
+    __pyx_t_9 = PyObject_Hash(__pyx_t_1); if (unlikely(__pyx_t_9 == ((Py_hash_t)-1))) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    (__pyx_v_object2[__pyx_v_j]) = __pyx_t_6;
+    (__pyx_v_object2[__pyx_v_j]) = __pyx_t_9;
   }
 
   /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":72
  *       object2[j] = hash(secondObject[j])
  * 
- *     cdef size_t maxLen = (len1 if len1 >= len2 else len2) * insertWeight             # <<<<<<<<<<<<<<
+ *     cdef size_t maxLen = (len1 if len1 >= len2 else len2) * max(insertWeight, deleteWeight, replaceWeight, swapWeight)             # <<<<<<<<<<<<<<
  *     cdef long** table
  *     cdef size_t k
  */
   if (((__pyx_v_len1 >= __pyx_v_len2) != 0)) {
-    __pyx_t_5 = __pyx_v_len1;
+    __pyx_t_8 = __pyx_v_len1;
   } else {
-    __pyx_t_5 = __pyx_v_len2;
+    __pyx_t_8 = __pyx_v_len2;
   }
-  __pyx_v_maxLen = (__pyx_t_5 * __pyx_v_insertWeight);
+  __pyx_t_6 = __pyx_v_deleteWeight;
+  __pyx_t_7 = __pyx_v_replaceWeight;
+  __pyx_t_5 = __pyx_v_swapWeight;
+  __pyx_t_10 = __pyx_v_insertWeight;
+  if (((__pyx_t_6 > __pyx_t_10) != 0)) {
+    __pyx_t_11 = __pyx_t_6;
+  } else {
+    __pyx_t_11 = __pyx_t_10;
+  }
+  __pyx_t_10 = __pyx_t_11;
+  if (((__pyx_t_7 > __pyx_t_10) != 0)) {
+    __pyx_t_11 = __pyx_t_7;
+  } else {
+    __pyx_t_11 = __pyx_t_10;
+  }
+  __pyx_t_10 = __pyx_t_11;
+  if (((__pyx_t_5 > __pyx_t_10) != 0)) {
+    __pyx_t_11 = __pyx_t_5;
+  } else {
+    __pyx_t_11 = __pyx_t_10;
+  }
+  __pyx_v_maxLen = (__pyx_t_8 * __pyx_t_11);
 
   /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":76
  *     cdef size_t k
@@ -1722,8 +1760,8 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *       table[i] = <long*> malloc(len2 * sizeof(long))
  *       if not table[i]:
  */
-  __pyx_t_5 = __pyx_v_len1;
-  for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_5; __pyx_v_i+=1) {
+  __pyx_t_8 = __pyx_v_len1;
+  for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_8; __pyx_v_i+=1) {
 
     /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":84
  * 
@@ -1769,8 +1807,8 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *           free(table[j])
  *         free(table)
  */
-      __pyx_t_7 = __pyx_v_i;
-      for (__pyx_v_j = 0; __pyx_v_j < __pyx_t_7; __pyx_v_j+=1) {
+      __pyx_t_12 = __pyx_v_i;
+      for (__pyx_v_j = 0; __pyx_v_j < __pyx_t_12; __pyx_v_j+=1) {
 
         /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":89
  *         free(object2)
@@ -1817,8 +1855,8 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *       for j from 0 <= j < len2 by 1:
  *         table[i][j] = 0
  */
-  __pyx_t_5 = __pyx_v_len1;
-  for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_5; __pyx_v_i+=1) {
+  __pyx_t_8 = __pyx_v_len1;
+  for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_8; __pyx_v_i+=1) {
 
     /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":94
  * 
@@ -1827,8 +1865,8 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *         table[i][j] = 0
  * 
  */
-    __pyx_t_7 = __pyx_v_len2;
-    for (__pyx_v_j = 0; __pyx_v_j < __pyx_t_7; __pyx_v_j+=1) {
+    __pyx_t_12 = __pyx_v_len2;
+    for (__pyx_v_j = 0; __pyx_v_j < __pyx_t_12; __pyx_v_j+=1) {
 
       /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":95
  *     for i from 0 <= i < len1 by 1:
@@ -1913,8 +1951,8 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *         free(table[i])
  *       free(table)
  */
-    __pyx_t_5 = __pyx_v_len1;
-    for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_5; __pyx_v_i+=1) {
+    __pyx_t_8 = __pyx_v_len1;
+    for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_8; __pyx_v_i+=1) {
 
       /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":106
  *       free(object2)
@@ -1987,8 +2025,8 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *         deleteDistance = table[i - 1][0] + deleteWeight
  *         insertDistance = (i + 1) * deleteWeight + insertWeight
  */
-  __pyx_t_5 = __pyx_v_len1;
-  for (__pyx_v_i = 1; __pyx_v_i < __pyx_t_5; __pyx_v_i+=1) {
+  __pyx_t_8 = __pyx_v_len1;
+  for (__pyx_v_i = 1; __pyx_v_i < __pyx_t_8; __pyx_v_i+=1) {
 
     /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":118
  * 
@@ -2016,11 +2054,11 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  * 
  */
     if ((((__pyx_v_object1[__pyx_v_i]) == (__pyx_v_object2[0])) != 0)) {
-      __pyx_t_7 = 0;
+      __pyx_t_12 = 0;
     } else {
-      __pyx_t_7 = __pyx_v_replaceWeight;
+      __pyx_t_12 = __pyx_v_replaceWeight;
     }
-    __pyx_v_matchDistance = ((__pyx_v_i * __pyx_v_deleteWeight) + __pyx_t_7);
+    __pyx_v_matchDistance = ((__pyx_v_i * __pyx_v_deleteWeight) + __pyx_t_12);
 
     /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":121
  *         insertDistance = (i + 1) * deleteWeight + insertWeight
@@ -2029,21 +2067,21 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  * 
  *     for j from 1 <= j < len2 by 1:
  */
-    __pyx_t_8 = __pyx_v_insertDistance;
-    __pyx_t_9 = __pyx_v_matchDistance;
-    __pyx_t_10 = __pyx_v_deleteDistance;
-    if (((__pyx_t_8 < __pyx_t_10) != 0)) {
-      __pyx_t_11 = __pyx_t_8;
+    __pyx_t_13 = __pyx_v_insertDistance;
+    __pyx_t_14 = __pyx_v_matchDistance;
+    __pyx_t_15 = __pyx_v_deleteDistance;
+    if (((__pyx_t_13 < __pyx_t_15) != 0)) {
+      __pyx_t_16 = __pyx_t_13;
     } else {
-      __pyx_t_11 = __pyx_t_10;
+      __pyx_t_16 = __pyx_t_15;
     }
-    __pyx_t_10 = __pyx_t_11;
-    if (((__pyx_t_9 < __pyx_t_10) != 0)) {
-      __pyx_t_11 = __pyx_t_9;
+    __pyx_t_15 = __pyx_t_16;
+    if (((__pyx_t_14 < __pyx_t_15) != 0)) {
+      __pyx_t_16 = __pyx_t_14;
     } else {
-      __pyx_t_11 = __pyx_t_10;
+      __pyx_t_16 = __pyx_t_15;
     }
-    ((__pyx_v_table[__pyx_v_i])[0]) = __pyx_t_11;
+    ((__pyx_v_table[__pyx_v_i])[0]) = __pyx_t_16;
   }
 
   /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":123
@@ -2053,8 +2091,8 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *         deleteDistance = (j + 1) * insertWeight + deleteWeight
  *         insertDistance = table[0][j - 1] + insertWeight
  */
-  __pyx_t_5 = __pyx_v_len2;
-  for (__pyx_v_j = 1; __pyx_v_j < __pyx_t_5; __pyx_v_j+=1) {
+  __pyx_t_8 = __pyx_v_len2;
+  for (__pyx_v_j = 1; __pyx_v_j < __pyx_t_8; __pyx_v_j+=1) {
 
     /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":124
  * 
@@ -2082,11 +2120,11 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  * 
  */
     if ((((__pyx_v_object1[0]) == (__pyx_v_object2[__pyx_v_j])) != 0)) {
-      __pyx_t_7 = 0;
+      __pyx_t_12 = 0;
     } else {
-      __pyx_t_7 = __pyx_v_replaceWeight;
+      __pyx_t_12 = __pyx_v_replaceWeight;
     }
-    __pyx_v_matchDistance = ((__pyx_v_j * __pyx_v_insertWeight) + __pyx_t_7);
+    __pyx_v_matchDistance = ((__pyx_v_j * __pyx_v_insertWeight) + __pyx_t_12);
 
     /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":127
  *         insertDistance = table[0][j - 1] + insertWeight
@@ -2095,21 +2133,21 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  * 
  *     cdef long indexItemMatchMax, indexSwapCandidate, jSwap, swapDistance, iSwap, preSwapCost, distance
  */
-    __pyx_t_11 = __pyx_v_insertDistance;
-    __pyx_t_8 = __pyx_v_matchDistance;
-    __pyx_t_9 = __pyx_v_deleteDistance;
-    if (((__pyx_t_11 < __pyx_t_9) != 0)) {
-      __pyx_t_10 = __pyx_t_11;
+    __pyx_t_16 = __pyx_v_insertDistance;
+    __pyx_t_13 = __pyx_v_matchDistance;
+    __pyx_t_14 = __pyx_v_deleteDistance;
+    if (((__pyx_t_16 < __pyx_t_14) != 0)) {
+      __pyx_t_15 = __pyx_t_16;
     } else {
-      __pyx_t_10 = __pyx_t_9;
+      __pyx_t_15 = __pyx_t_14;
     }
-    __pyx_t_9 = __pyx_t_10;
-    if (((__pyx_t_8 < __pyx_t_9) != 0)) {
-      __pyx_t_10 = __pyx_t_8;
+    __pyx_t_14 = __pyx_t_15;
+    if (((__pyx_t_13 < __pyx_t_14) != 0)) {
+      __pyx_t_15 = __pyx_t_13;
     } else {
-      __pyx_t_10 = __pyx_t_9;
+      __pyx_t_15 = __pyx_t_14;
     }
-    ((__pyx_v_table[0])[__pyx_v_j]) = __pyx_t_10;
+    ((__pyx_v_table[0])[__pyx_v_j]) = __pyx_t_15;
   }
 
   /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":132
@@ -2128,8 +2166,8 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *           indexItemMatchMax = 0 if object1[i] == object2[0] else -1
  *           for j from 1 <= j < len2 by 1:
  */
-    __pyx_t_5 = __pyx_v_len1;
-    for (__pyx_v_i = 1; __pyx_v_i < __pyx_t_5; __pyx_v_i+=1) {
+    __pyx_t_8 = __pyx_v_len1;
+    for (__pyx_v_i = 1; __pyx_v_i < __pyx_t_8; __pyx_v_i+=1) {
 
       /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":134
  *     try:
@@ -2139,11 +2177,11 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *               indexSwapCandidate = -1
  */
       if ((((__pyx_v_object1[__pyx_v_i]) == (__pyx_v_object2[0])) != 0)) {
-        __pyx_t_10 = 0;
+        __pyx_t_15 = 0;
       } else {
-        __pyx_t_10 = -1L;
+        __pyx_t_15 = -1L;
       }
-      __pyx_v_indexItemMatchMax = __pyx_t_10;
+      __pyx_v_indexItemMatchMax = __pyx_t_15;
 
       /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":135
  *       for i from 1 <= i < len1 by 1:
@@ -2152,8 +2190,8 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *               indexSwapCandidate = -1
  *               for k from 0 <= k < countMap by 1:
  */
-      __pyx_t_7 = __pyx_v_len2;
-      for (__pyx_v_j = 1; __pyx_v_j < __pyx_t_7; __pyx_v_j+=1) {
+      __pyx_t_12 = __pyx_v_len2;
+      for (__pyx_v_j = 1; __pyx_v_j < __pyx_t_12; __pyx_v_j+=1) {
 
         /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":136
  *           indexItemMatchMax = 0 if object1[i] == object2[0] else -1
@@ -2171,8 +2209,8 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *                 if lastSeenCharacter[k].key == object2[j]:
  *                   indexSwapCandidate = lastSeenCharacter[k].value
  */
-        __pyx_t_12 = __pyx_v_countMap;
-        for (__pyx_v_k = 0; __pyx_v_k < __pyx_t_12; __pyx_v_k+=1) {
+        __pyx_t_17 = __pyx_v_countMap;
+        for (__pyx_v_k = 0; __pyx_v_k < __pyx_t_17; __pyx_v_k+=1) {
 
           /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":138
  *               indexSwapCandidate = -1
@@ -2191,8 +2229,8 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *                   break
  *               jSwap = indexItemMatchMax
  */
-            __pyx_t_10 = (__pyx_v_lastSeenCharacter[__pyx_v_k]).value;
-            __pyx_v_indexSwapCandidate = __pyx_t_10;
+            __pyx_t_15 = (__pyx_v_lastSeenCharacter[__pyx_v_k]).value;
+            __pyx_v_indexSwapCandidate = __pyx_t_15;
 
             /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":140
  *                 if lastSeenCharacter[k].key == object2[j]:
@@ -2374,21 +2412,21 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *               else:
  */
             /*else*/ {
-              __pyx_t_10 = (__pyx_v_iSwap - 1);
-              __pyx_t_11 = 0;
-              if (((__pyx_t_10 > __pyx_t_11) != 0)) {
-                __pyx_t_8 = __pyx_t_10;
+              __pyx_t_15 = (__pyx_v_iSwap - 1);
+              __pyx_t_16 = 0;
+              if (((__pyx_t_15 > __pyx_t_16) != 0)) {
+                __pyx_t_13 = __pyx_t_15;
               } else {
-                __pyx_t_8 = __pyx_t_11;
+                __pyx_t_13 = __pyx_t_16;
               }
-              __pyx_t_10 = (__pyx_v_jSwap - 1);
-              __pyx_t_11 = 0;
-              if (((__pyx_t_10 > __pyx_t_11) != 0)) {
-                __pyx_t_9 = __pyx_t_10;
+              __pyx_t_15 = (__pyx_v_jSwap - 1);
+              __pyx_t_16 = 0;
+              if (((__pyx_t_15 > __pyx_t_16) != 0)) {
+                __pyx_t_14 = __pyx_t_15;
               } else {
-                __pyx_t_9 = __pyx_t_11;
+                __pyx_t_14 = __pyx_t_16;
               }
-              __pyx_v_preSwapCost = ((__pyx_v_table[__pyx_t_8])[__pyx_t_9]);
+              __pyx_v_preSwapCost = ((__pyx_v_table[__pyx_t_13])[__pyx_t_14]);
             }
             __pyx_L53:;
 
@@ -2449,21 +2487,21 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *               else:
  *                 table[i][j] = min(deleteDistance, insertDistance, matchDistance, swapDistance)
  */
-          __pyx_t_9 = __pyx_v_insertDistance;
-          __pyx_t_8 = __pyx_v_matchDistance;
-          __pyx_t_10 = __pyx_v_deleteDistance;
-          if (((__pyx_t_9 < __pyx_t_10) != 0)) {
-            __pyx_t_11 = __pyx_t_9;
+          __pyx_t_14 = __pyx_v_insertDistance;
+          __pyx_t_13 = __pyx_v_matchDistance;
+          __pyx_t_15 = __pyx_v_deleteDistance;
+          if (((__pyx_t_14 < __pyx_t_15) != 0)) {
+            __pyx_t_16 = __pyx_t_14;
           } else {
-            __pyx_t_11 = __pyx_t_10;
+            __pyx_t_16 = __pyx_t_15;
           }
-          __pyx_t_10 = __pyx_t_11;
-          if (((__pyx_t_8 < __pyx_t_10) != 0)) {
-            __pyx_t_11 = __pyx_t_8;
+          __pyx_t_15 = __pyx_t_16;
+          if (((__pyx_t_13 < __pyx_t_15) != 0)) {
+            __pyx_t_16 = __pyx_t_13;
           } else {
-            __pyx_t_11 = __pyx_t_10;
+            __pyx_t_16 = __pyx_t_15;
           }
-          ((__pyx_v_table[__pyx_v_i])[__pyx_v_j]) = __pyx_t_11;
+          ((__pyx_v_table[__pyx_v_i])[__pyx_v_j]) = __pyx_t_16;
 
           /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":160
  *               else:
@@ -2483,28 +2521,28 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *           for k from 0 <= k < countMap by 1:
  */
         /*else*/ {
-          __pyx_t_11 = __pyx_v_insertDistance;
-          __pyx_t_9 = __pyx_v_matchDistance;
-          __pyx_t_8 = __pyx_v_swapDistance;
-          __pyx_t_10 = __pyx_v_deleteDistance;
-          if (((__pyx_t_11 < __pyx_t_10) != 0)) {
-            __pyx_t_13 = __pyx_t_11;
+          __pyx_t_16 = __pyx_v_insertDistance;
+          __pyx_t_14 = __pyx_v_matchDistance;
+          __pyx_t_13 = __pyx_v_swapDistance;
+          __pyx_t_15 = __pyx_v_deleteDistance;
+          if (((__pyx_t_16 < __pyx_t_15) != 0)) {
+            __pyx_t_18 = __pyx_t_16;
           } else {
-            __pyx_t_13 = __pyx_t_10;
+            __pyx_t_18 = __pyx_t_15;
           }
-          __pyx_t_10 = __pyx_t_13;
-          if (((__pyx_t_9 < __pyx_t_10) != 0)) {
-            __pyx_t_13 = __pyx_t_9;
+          __pyx_t_15 = __pyx_t_18;
+          if (((__pyx_t_14 < __pyx_t_15) != 0)) {
+            __pyx_t_18 = __pyx_t_14;
           } else {
-            __pyx_t_13 = __pyx_t_10;
+            __pyx_t_18 = __pyx_t_15;
           }
-          __pyx_t_10 = __pyx_t_13;
-          if (((__pyx_t_8 < __pyx_t_10) != 0)) {
-            __pyx_t_13 = __pyx_t_8;
+          __pyx_t_15 = __pyx_t_18;
+          if (((__pyx_t_13 < __pyx_t_15) != 0)) {
+            __pyx_t_18 = __pyx_t_13;
           } else {
-            __pyx_t_13 = __pyx_t_10;
+            __pyx_t_18 = __pyx_t_15;
           }
-          ((__pyx_v_table[__pyx_v_i])[__pyx_v_j]) = __pyx_t_13;
+          ((__pyx_v_table[__pyx_v_i])[__pyx_v_j]) = __pyx_t_18;
         }
         __pyx_L56:;
       }
@@ -2525,8 +2563,8 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *             if lastSeenCharacter[k].key == object1[i]:
  *               lastSeenCharacter[k].value = i
  */
-      __pyx_t_7 = __pyx_v_countMap;
-      for (__pyx_v_k = 0; __pyx_v_k < __pyx_t_7; __pyx_v_k+=1) {
+      __pyx_t_12 = __pyx_v_countMap;
+      for (__pyx_v_k = 0; __pyx_v_k < __pyx_t_12; __pyx_v_k+=1) {
 
         /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":166
  *           sw = True
@@ -2682,8 +2720,8 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  *       similarityScore = (<double>(maxLen - distance) / maxLen)
  * 
  *       if similarity == True:             # <<<<<<<<<<<<<<
- *         return similarityScore
- *       else:
+ *         if similarityScore < 0:
+ *           return 0
  */
     __pyx_t_2 = ((__pyx_v_similarity == 1) != 0);
     if (__pyx_t_2) {
@@ -2691,24 +2729,84 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
       /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":184
  * 
  *       if similarity == True:
- *         return similarityScore             # <<<<<<<<<<<<<<
+ *         if similarityScore < 0:             # <<<<<<<<<<<<<<
+ *           return 0
+ *         elif similarityScore > 1:
+ */
+      __pyx_t_2 = ((__pyx_v_similarityScore < 0.0) != 0);
+      if (__pyx_t_2) {
+
+        /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":185
+ *       if similarity == True:
+ *         if similarityScore < 0:
+ *           return 0             # <<<<<<<<<<<<<<
+ *         elif similarityScore > 1:
+ *           return 1
+ */
+        __pyx_r = 0.0;
+        goto __pyx_L40_return;
+
+        /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":184
+ * 
+ *       if similarity == True:
+ *         if similarityScore < 0:             # <<<<<<<<<<<<<<
+ *           return 0
+ *         elif similarityScore > 1:
+ */
+      }
+
+      /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":186
+ *         if similarityScore < 0:
+ *           return 0
+ *         elif similarityScore > 1:             # <<<<<<<<<<<<<<
+ *           return 1
+ *         else:
+ */
+      __pyx_t_2 = ((__pyx_v_similarityScore > 1.0) != 0);
+      if (__pyx_t_2) {
+
+        /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":187
+ *           return 0
+ *         elif similarityScore > 1:
+ *           return 1             # <<<<<<<<<<<<<<
+ *         else:
+ *           return similarityScore
+ */
+        __pyx_r = 1.0;
+        goto __pyx_L40_return;
+
+        /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":186
+ *         if similarityScore < 0:
+ *           return 0
+ *         elif similarityScore > 1:             # <<<<<<<<<<<<<<
+ *           return 1
+ *         else:
+ */
+      }
+
+      /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":189
+ *           return 1
+ *         else:
+ *           return similarityScore             # <<<<<<<<<<<<<<
  *       else:
  *         return distance
  */
-      __pyx_r = __pyx_v_similarityScore;
-      goto __pyx_L40_return;
+      /*else*/ {
+        __pyx_r = __pyx_v_similarityScore;
+        goto __pyx_L40_return;
+      }
 
       /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":183
  *       similarityScore = (<double>(maxLen - distance) / maxLen)
  * 
  *       if similarity == True:             # <<<<<<<<<<<<<<
- *         return similarityScore
- *       else:
+ *         if similarityScore < 0:
+ *           return 0
  */
     }
 
-    /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":186
- *         return similarityScore
+    /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":191
+ *           return similarityScore
  *       else:
  *         return distance             # <<<<<<<<<<<<<<
  *     finally:
@@ -2720,7 +2818,7 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
     }
   }
 
-  /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":188
+  /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":193
  *         return distance
  *     finally:
  *       free(object1)             # <<<<<<<<<<<<<<
@@ -2732,21 +2830,21 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
     /*exception exit:*/{
       __Pyx_PyThreadState_declare
       __Pyx_PyThreadState_assign
-      __pyx_t_17 = 0; __pyx_t_18 = 0; __pyx_t_19 = 0; __pyx_t_20 = 0; __pyx_t_21 = 0; __pyx_t_22 = 0;
+      __pyx_t_20 = 0; __pyx_t_21 = 0; __pyx_t_22 = 0; __pyx_t_23 = 0; __pyx_t_24 = 0; __pyx_t_25 = 0;
       __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-      if (PY_MAJOR_VERSION >= 3) __Pyx_ExceptionSwap(&__pyx_t_20, &__pyx_t_21, &__pyx_t_22);
-      if ((PY_MAJOR_VERSION < 3) || unlikely(__Pyx_GetException(&__pyx_t_17, &__pyx_t_18, &__pyx_t_19) < 0)) __Pyx_ErrFetch(&__pyx_t_17, &__pyx_t_18, &__pyx_t_19);
-      __Pyx_XGOTREF(__pyx_t_17);
-      __Pyx_XGOTREF(__pyx_t_18);
-      __Pyx_XGOTREF(__pyx_t_19);
+      if (PY_MAJOR_VERSION >= 3) __Pyx_ExceptionSwap(&__pyx_t_23, &__pyx_t_24, &__pyx_t_25);
+      if ((PY_MAJOR_VERSION < 3) || unlikely(__Pyx_GetException(&__pyx_t_20, &__pyx_t_21, &__pyx_t_22) < 0)) __Pyx_ErrFetch(&__pyx_t_20, &__pyx_t_21, &__pyx_t_22);
       __Pyx_XGOTREF(__pyx_t_20);
       __Pyx_XGOTREF(__pyx_t_21);
       __Pyx_XGOTREF(__pyx_t_22);
-      __pyx_t_14 = __pyx_lineno; __pyx_t_15 = __pyx_clineno; __pyx_t_16 = __pyx_filename;
+      __Pyx_XGOTREF(__pyx_t_23);
+      __Pyx_XGOTREF(__pyx_t_24);
+      __Pyx_XGOTREF(__pyx_t_25);
+      __pyx_t_11 = __pyx_lineno; __pyx_t_6 = __pyx_clineno; __pyx_t_19 = __pyx_filename;
       {
         free(__pyx_v_object1);
 
-        /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":189
+        /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":194
  *     finally:
  *       free(object1)
  *       free(object2)             # <<<<<<<<<<<<<<
@@ -2755,17 +2853,17 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  */
         free(__pyx_v_object2);
 
-        /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":190
+        /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":195
  *       free(object1)
  *       free(object2)
  *       for i from 0 <= i < len1 by 1:             # <<<<<<<<<<<<<<
  *         free(table[i])
  *       free(table)
  */
-        __pyx_t_5 = __pyx_v_len1;
-        for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_5; __pyx_v_i+=1) {
+        __pyx_t_8 = __pyx_v_len1;
+        for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_8; __pyx_v_i+=1) {
 
-          /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":191
+          /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":196
  *       free(object2)
  *       for i from 0 <= i < len1 by 1:
  *         free(table[i])             # <<<<<<<<<<<<<<
@@ -2775,7 +2873,7 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
           free((__pyx_v_table[__pyx_v_i]));
         }
 
-        /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":192
+        /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":197
  *       for i from 0 <= i < len1 by 1:
  *         free(table[i])
  *       free(table)             # <<<<<<<<<<<<<<
@@ -2783,7 +2881,7 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  */
         free(__pyx_v_table);
 
-        /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":193
+        /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":198
  *         free(table[i])
  *       free(table)
  *       free(lastSeenCharacter)             # <<<<<<<<<<<<<<
@@ -2791,23 +2889,23 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
         free(__pyx_v_lastSeenCharacter);
       }
       if (PY_MAJOR_VERSION >= 3) {
-        __Pyx_XGIVEREF(__pyx_t_20);
-        __Pyx_XGIVEREF(__pyx_t_21);
-        __Pyx_XGIVEREF(__pyx_t_22);
-        __Pyx_ExceptionReset(__pyx_t_20, __pyx_t_21, __pyx_t_22);
+        __Pyx_XGIVEREF(__pyx_t_23);
+        __Pyx_XGIVEREF(__pyx_t_24);
+        __Pyx_XGIVEREF(__pyx_t_25);
+        __Pyx_ExceptionReset(__pyx_t_23, __pyx_t_24, __pyx_t_25);
       }
-      __Pyx_XGIVEREF(__pyx_t_17);
-      __Pyx_XGIVEREF(__pyx_t_18);
-      __Pyx_XGIVEREF(__pyx_t_19);
-      __Pyx_ErrRestore(__pyx_t_17, __pyx_t_18, __pyx_t_19);
-      __pyx_t_17 = 0; __pyx_t_18 = 0; __pyx_t_19 = 0; __pyx_t_20 = 0; __pyx_t_21 = 0; __pyx_t_22 = 0;
-      __pyx_lineno = __pyx_t_14; __pyx_clineno = __pyx_t_15; __pyx_filename = __pyx_t_16;
+      __Pyx_XGIVEREF(__pyx_t_20);
+      __Pyx_XGIVEREF(__pyx_t_21);
+      __Pyx_XGIVEREF(__pyx_t_22);
+      __Pyx_ErrRestore(__pyx_t_20, __pyx_t_21, __pyx_t_22);
+      __pyx_t_20 = 0; __pyx_t_21 = 0; __pyx_t_22 = 0; __pyx_t_23 = 0; __pyx_t_24 = 0; __pyx_t_25 = 0;
+      __pyx_lineno = __pyx_t_11; __pyx_clineno = __pyx_t_6; __pyx_filename = __pyx_t_19;
       goto __pyx_L1_error;
     }
     __pyx_L40_return: {
-      __pyx_t_23 = __pyx_r;
+      __pyx_t_26 = __pyx_r;
 
-      /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":188
+      /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":193
  *         return distance
  *     finally:
  *       free(object1)             # <<<<<<<<<<<<<<
@@ -2816,7 +2914,7 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  */
       free(__pyx_v_object1);
 
-      /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":189
+      /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":194
  *     finally:
  *       free(object1)
  *       free(object2)             # <<<<<<<<<<<<<<
@@ -2825,17 +2923,17 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  */
       free(__pyx_v_object2);
 
-      /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":190
+      /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":195
  *       free(object1)
  *       free(object2)
  *       for i from 0 <= i < len1 by 1:             # <<<<<<<<<<<<<<
  *         free(table[i])
  *       free(table)
  */
-      __pyx_t_5 = __pyx_v_len1;
-      for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_5; __pyx_v_i+=1) {
+      __pyx_t_8 = __pyx_v_len1;
+      for (__pyx_v_i = 0; __pyx_v_i < __pyx_t_8; __pyx_v_i+=1) {
 
-        /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":191
+        /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":196
  *       free(object2)
  *       for i from 0 <= i < len1 by 1:
  *         free(table[i])             # <<<<<<<<<<<<<<
@@ -2845,7 +2943,7 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
         free((__pyx_v_table[__pyx_v_i]));
       }
 
-      /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":192
+      /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":197
  *       for i from 0 <= i < len1 by 1:
  *         free(table[i])
  *       free(table)             # <<<<<<<<<<<<<<
@@ -2853,13 +2951,13 @@ static double __pyx_f_22fastDamerauLevenshtein_22fastDamerauLevenshtein_damerauL
  */
       free(__pyx_v_table);
 
-      /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":193
+      /* "fastDamerauLevenshtein/fastDamerauLevenshtein.pyx":198
  *         free(table[i])
  *       free(table)
  *       free(lastSeenCharacter)             # <<<<<<<<<<<<<<
  */
       free(__pyx_v_lastSeenCharacter);
-      __pyx_r = __pyx_t_23;
+      __pyx_r = __pyx_t_26;
       goto __pyx_L0;
     }
   }
