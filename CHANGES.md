@@ -1,5 +1,8 @@
 # Changes
 
+## 1.0.5 (03-08-2019)
+* Fixed overflow for 'similarity' and other weights bugs.
+
 ## 1.0.3 (03-08-2019)
 * Changed type of variables used for iteration to 'size_t'.
 
