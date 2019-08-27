@@ -69,7 +69,7 @@ cpdef double damerauLevenshtein(firstObject, secondObject, bint similarity=True,
     for j from 0 <= j < len2 by 1:
       object2[j] = hash(secondObject[j])
 
-    cdef size_t maxLen = (len1 if len1 >= len2 else len2) * max(insertWeight, deleteWeight, replaceWeight, swapWeight)
+    cdef size_t maxDist = min(len1, len2) * min(replaceWeight, deleteWeight + insertWeight) + (max(len1, len2) - min(len1, len2)) * min(deleteWeight, insertWeight)
     cdef long** table
     cdef size_t k
 
@@ -178,7 +178,7 @@ cpdef double damerauLevenshtein(firstObject, secondObject, bint similarity=True,
             countMap += 1
 
       distance = table[len1 - 1][len2 - 1]
-      similarityScore = (<double>(maxLen - distance) / maxLen)
+      similarityScore = (<double>(maxDist - distance) / maxDist)
 
       if similarity == True:
         if similarityScore < 0:
