@@ -23,7 +23,7 @@ README = open("./README.md").read()
 
 metadata = dict(
     name='fastDamerauLevenshtein',
-    version='1.0.6',
+    version='1.0.7',
     description='Cython implementation of true Damerau-Levenshtein algorithm.',
     long_description=README,
     long_description_content_type="text/markdown",
@@ -39,10 +39,11 @@ metadata = dict(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Topic :: Text Processing :: Linguistic',
         'Topic :: Scientific/Engineering :: Information Analysis',
         'Topic :: Scientific/Engineering :: Bio-Informatics',

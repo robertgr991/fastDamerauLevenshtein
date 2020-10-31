@@ -12,7 +12,7 @@ The Damerau-Levenshtein distance differs from the classical Levenshtein distance
 The implementation is based on [James M. Jensen II](https://www.lemoda.net/text-fuzzy/damerau-levenshtein/index.html) explanation and it allows specifying the cost of every operation.
 
 ## Requirements
-This code requires Python 2.7 or 3.4+ and a C compiler such as GCC.
+This code requires Python 2.7 or 3.5+ and a C compiler such as GCC.
 
 ## Install
 fastDamerauLevenshtein is available on PyPI at https://pypi.python.org/pypi/fastDamerauLevenshtein.

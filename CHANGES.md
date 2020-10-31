@@ -1,5 +1,8 @@
 # Changes
 
+## 1.0.7 (31-10-2020)
+* Rebuild, add CI for Python 3.8 and 3.9 and drop for 3.4
+
 ## 1.0.6 (27-08-2019)
 * Changed method of computing maximum possible distance between the two objects.
 
