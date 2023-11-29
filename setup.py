@@ -44,13 +44,17 @@ metadata = dict(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.11',
         'Topic :: Text Processing :: Linguistic',
         'Topic :: Scientific/Engineering :: Information Analysis',
         'Topic :: Scientific/Engineering :: Bio-Informatics',
     ]
 )
 
+exte = Extension('fastDamerauLevenshtein', ['fastDamerauLevenshtein/fastDamerauLevenshtein.c'], extra_compile_args=['-I/usr/include/python3.11/cython'])
+
+
 setup(
-    ext_modules=[Extension('fastDamerauLevenshtein', ['fastDamerauLevenshtein/fastDamerauLevenshtein.c'])],
+    ext_modules=[exte],
     **metadata
 )
